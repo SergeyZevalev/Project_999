@@ -17,6 +17,8 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.TextView
 import androidx.annotation.StringRes
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,10 +39,6 @@ class MainActivity : AppCompatActivity() {
                 textView.setText(data)
             }
 
-        }
-
-        if (savedInstanceState == null) {
-            textView.text = "0"
         }
 
         textView.setOnClickListener {
