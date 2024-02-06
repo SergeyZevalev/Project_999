@@ -1,15 +1,14 @@
-package com.example.project_999
+package com.example.project_999.core
 
 import androidx.annotation.MainThread
-import androidx.annotation.StringRes
-import com.google.android.material.snackbar.Snackbar
 
-interface UiObservable<T : Any> : UiUpdate<T> {
+interface UiObservable<T : Any> : UiUpdate<T>, UpdateObserver<T> {
 
-    fun updateObserver(uiObserver: UiObserver<T> = UiObserver.Empty())
 
-    class Single<T : Any>() : UiObservable<T> {
+    abstract class Single<T : Any>() : UiObservable<T> {
+        @Volatile
         private var observer: UiObserver<T> = UiObserver.Empty()
+        @Volatile
         private var cachedData: T? = null
 
         @MainThread
@@ -27,6 +26,7 @@ interface UiObservable<T : Any> : UiUpdate<T> {
             if (observer.isEmpty())
                 cachedData = data
             else {
+                cachedData = null
                 observer.update(data)
             }
         }
@@ -42,6 +42,10 @@ interface UiObserver<T : Any> : UiUpdate<T> {
         override fun update(data: T) = Unit
 
     }
+}
+
+interface UpdateObserver<T: Any> {
+    fun updateObserver(uiObserver: UiObserver<T> = UiObserver.Empty())
 }
 
 interface UiUpdate<T : Any> {

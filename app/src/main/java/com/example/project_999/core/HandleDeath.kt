@@ -1,4 +1,4 @@
-package com.example.project_999
+package com.example.project_999.core
 
 interface HandleDeath {
     fun firstOpening()
