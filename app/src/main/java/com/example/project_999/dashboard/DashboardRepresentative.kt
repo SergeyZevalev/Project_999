@@ -30,7 +30,5 @@ interface DashboardRepresentative : Representative<PremiumDashboardUiState> {
     ) : DashboardRepresentative {
         override fun play() = navigation.update(Subscription)
 
-
-
     }
 }

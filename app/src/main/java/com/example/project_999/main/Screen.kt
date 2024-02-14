@@ -23,7 +23,7 @@ interface Screen {
 
         override fun show(fragmentManager: FragmentManager, containerId: Int) {
             fragmentManager.beginTransaction()
-                .replace(containerId, fragmentClass.newInstance())
+                .add(containerId, fragmentClass.newInstance())
                 .addToBackStack(fragmentClass.name)
                 .commit()
         }

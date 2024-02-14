@@ -1,7 +1,5 @@
 package com.example.project_999.core
 
-import com.example.project_999.main.Screen
-
 interface Representative<T : Any> {
 
     fun startGettingUpdates(callback: UiObserver<T>) = Unit
