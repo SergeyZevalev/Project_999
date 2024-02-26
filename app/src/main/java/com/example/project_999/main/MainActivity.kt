@@ -26,6 +26,8 @@ class MainActivity : AppCompatActivity(), ProvideRepresentative {
                 data.show(supportFragmentManager, R.id.container)
             }
 
+            override fun isEmpty() = false
+
         }
 
         representative =

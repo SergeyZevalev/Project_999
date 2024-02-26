@@ -10,7 +10,10 @@ interface PremiumDashboardUiState {
             button.hide()
             textView.show()
         }
+    }
 
+    object Empty : PremiumDashboardUiState {
+        override fun show(button: ChangeVisible, textView: ChangeVisible) = Unit
 
     }
 }

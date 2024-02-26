@@ -3,10 +3,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
+    <com.example.project_999.core.CustomButton
         android:layout_gravity="center"
         android:id="@+id/subscription_button"
         android:text="subscribe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <com.example.project_999.core.CustomProgressBar
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <com.example.project_999.core.CustomButton
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:id="@+id/finish_button"
+        android:text="Subscribed \n OK"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 

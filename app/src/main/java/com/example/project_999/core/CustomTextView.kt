@@ -33,7 +33,7 @@ class CustomTextView : androidx.appcompat.widget.AppCompatTextView, ChangeVisibl
 
     override fun onRestoreInstanceState(state: Parcelable?) {
         val customTextViewState = state as CustomVisibilityState?
-        super.onRestoreInstanceState(state)
+        super.onRestoreInstanceState(state?.superState)
         customTextViewState?.let {
             visibility = it.visible
         }
