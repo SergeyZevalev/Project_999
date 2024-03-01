@@ -6,6 +6,7 @@ import com.example.project_999.dashboard.Dashboard
 
 interface MainRepresentative: Representative<Screen> {
     fun showDashboard(firstTime: Boolean)
+    fun observed()
     fun saveState()
 
     class Base(
@@ -22,6 +23,10 @@ interface MainRepresentative: Representative<Screen> {
             if (firstTime) {
                 navigation.update(Dashboard)
             }
+        }
+
+        override fun observed() {
+            navigation.clear()
         }
 
         override fun saveState() {

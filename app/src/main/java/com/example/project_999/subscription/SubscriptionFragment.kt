@@ -33,8 +33,6 @@ class SubscriptionFragment: BaseFragment<SubscriptionRepresentative>(R.layout.fr
                 data.observed(representative)
                 data.show(subscribeButton, progressBar, finishButton)
             }
-            override fun isEmpty() = false
-
         }
 
     }

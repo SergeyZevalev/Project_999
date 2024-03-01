@@ -8,7 +8,6 @@ import android.view.View
 import android.view.View.BaseSavedState
 
 class CustomButton : androidx.appcompat.widget.AppCompatButton, ChangeVisible {
-
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
         context,
         attrs,

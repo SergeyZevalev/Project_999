@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentManager
 
 interface Screen {
 
+    fun observed(representative: MainRepresentative) = representative.observed()
     fun show(fragmentManager: FragmentManager, containerId: Int)
 
     abstract class Replace(

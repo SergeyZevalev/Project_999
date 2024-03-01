@@ -7,11 +7,14 @@ import com.example.project_999.subscription.Subscription
 
 interface DashboardRepresentative : Representative<PremiumDashboardUiState> {
 
+    fun observed() = Unit
     fun play()
 
     class Premium(
         private val observable: PremiumDashBoardObservable
     ) : DashboardRepresentative {
+
+        override fun observed() = observable.clear()
         override fun play() {
             observable.update(PremiumDashboardUiState.Playing)
         }

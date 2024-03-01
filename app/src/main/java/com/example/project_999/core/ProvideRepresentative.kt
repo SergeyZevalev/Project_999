@@ -14,18 +14,30 @@ interface ProvideRepresentative {
     class Factory(
         private val core: Core,
         private val clear: ClearRepresentative
-    ) : ProvideRepresentative {
-        override fun <T : Representative<*>> provideRepresentative(clasz: Class<T>): T =
-            when (clasz) {
-                MainRepresentative::class.java -> MainModule(core).representative()
-                DashboardRepresentative::class.java -> DashBoardModule(core).representative()
-                SubscriptionRepresentative::class.java -> SubscriptionModule(
-                    core,
-                    clear
-                ).representative()
+    ) : ProvideRepresentative, ClearRepresentative {
 
-                else -> throw IllegalStateException("Unknown class $clasz")
-            } as T
+        private val representativeMap = mutableMapOf<Class<out Representative<*>>, Representative<*>>()
+        override fun <T : Representative<*>> provideRepresentative(clasz: Class<T>): T =
+            if (representativeMap.containsKey(clasz)) {
+                representativeMap[clasz] as T
+            } else {
+                val representative = when (clasz) {
+                    MainRepresentative::class.java -> MainModule(core).representative()
+                    DashboardRepresentative::class.java -> DashBoardModule(core).representative()
+                    SubscriptionRepresentative::class.java -> SubscriptionModule(
+                        core,
+                        clear
+                    ).representative()
+
+                    else -> throw IllegalStateException("Unknown class $clasz")
+                } as T
+                representativeMap[clasz] = representative
+                representative
+            }
+
+        override fun clear(clazz: Class<out Representative<*>>) {
+            representativeMap.remove(clazz)
+        }
 
     }
 }

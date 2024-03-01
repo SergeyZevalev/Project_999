@@ -2,12 +2,10 @@ package com.example.project_999.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.project_999.core.MyApp
 import com.example.project_999.R
 import com.example.project_999.core.ProvideRepresentative
 import com.example.project_999.core.Representative
 import com.example.project_999.core.UiObserver
-import java.util.Scanner
 
 class MainActivity : AppCompatActivity(), ProvideRepresentative {
 
@@ -24,10 +22,8 @@ class MainActivity : AppCompatActivity(), ProvideRepresentative {
         uiObserver = object : UiObserver<Screen> {
             override fun update(data: Screen) = runOnUiThread {
                 data.show(supportFragmentManager, R.id.container)
+                data.observed(representative)
             }
-
-            override fun isEmpty() = false
-
         }
 
         representative =

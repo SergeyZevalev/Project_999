@@ -26,9 +26,8 @@ class DashboardFragment: BaseFragment<DashboardRepresentative>(R.layout.dashboar
         callback = object : UiObserver<PremiumDashboardUiState> {
             override fun update(data: PremiumDashboardUiState) = requireActivity().runOnUiThread {
                 data.show(button, textView)
+                data.observed(representative)
             }
-
-            override fun isEmpty() = false
 
         }
     }
