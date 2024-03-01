@@ -8,6 +8,7 @@ class MyApp : Application(), ProvideRepresentative, ClearRepresentative {
     override fun onCreate() {
         super.onCreate()
         factory = ProvideRepresentative.Factory(Core.Base(this), this)
+
     }
 
     override fun <T : Representative<*>> provideRepresentative(clasz: Class<T>): T =
