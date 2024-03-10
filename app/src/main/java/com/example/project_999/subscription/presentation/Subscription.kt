@@ -1,4 +1,4 @@
-package com.example.project_999.subscription
+package com.example.project_999.subscription.presentation
 
 import com.example.project_999.main.Screen
 

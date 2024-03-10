@@ -5,7 +5,7 @@ import com.example.project_999.dashboard.DashboardRepresentative
 import com.example.project_999.main.MainModule
 import com.example.project_999.main.MainRepresentative
 import com.example.project_999.subscription.SubscriptionModule
-import com.example.project_999.subscription.SubscriptionRepresentative
+import com.example.project_999.subscription.presentation.SubscriptionRepresentative
 
 interface ProvideRepresentative {
 
@@ -18,7 +18,7 @@ interface ProvideRepresentative {
         override fun <T : Representative<*>> provideRepresentative(clasz: Class<T>): T =
             when (clasz) {
                 MainRepresentative::class.java -> MainModule(core).representative()
-                DashboardRepresentative::class.java -> DashBoardModule(core).representative()
+                DashboardRepresentative::class.java -> DashBoardModule(core, clear).representative()
                 SubscriptionRepresentative::class.java -> SubscriptionModule(
                     core,
                     clear

@@ -1,4 +1,4 @@
-package com.example.project_999.subscription
+package com.example.project_999.subscription.presentation
 
 import android.os.Bundle
 import com.example.project_999.core.SaveAndRestore

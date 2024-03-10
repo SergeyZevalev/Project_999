@@ -1,4 +1,4 @@
-package com.example.project_999.subscription
+package com.example.project_999.subscription.presentation
 
 import android.os.Bundle
 import android.util.Log
@@ -16,6 +16,7 @@ class SubscriptionFragment: BaseFragment<SubscriptionRepresentative>(R.layout.fr
     private lateinit var observer: UiObserver<SubscriptionUiState>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        Log.d("act999", "OVC")
         super.onViewCreated(view, savedInstanceState)
         val subscribeButton = view.findViewById<CustomButton>(R.id.subscription_button)
         val progressBar = view.findViewById<CustomProgressBar>(R.id.progress_bar)
@@ -35,6 +36,8 @@ class SubscriptionFragment: BaseFragment<SubscriptionRepresentative>(R.layout.fr
             }
         }
 
+        representative.initState(SubscriptionUiSaveAndRestoreState.Base(savedInstanceState))
+
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -45,8 +48,6 @@ class SubscriptionFragment: BaseFragment<SubscriptionRepresentative>(R.layout.fr
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
-        if (savedInstanceState != null)
-            representative.initState(SubscriptionUiSaveAndRestoreState.Base(savedInstanceState))
     }
 
     override fun onResume() {

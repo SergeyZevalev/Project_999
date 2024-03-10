@@ -40,6 +40,14 @@ interface UiObserver<T : Any> : UiUpdate<T>{
     class Empty<T : Any>() : UiObserver<T> {
         override fun update(data: T) = Unit
 
+        override fun equals(other: Any?): Boolean {
+            return javaClass.name == other?.javaClass?.name
+        }
+
+        override fun hashCode(): Int {
+            return javaClass.hashCode()
+        }
+
     }
 }
 
