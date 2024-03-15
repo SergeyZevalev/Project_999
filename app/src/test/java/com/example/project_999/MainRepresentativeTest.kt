@@ -15,16 +15,20 @@ class MainRepresentativeTest {
     private lateinit var navigation: FakeMutableNavigation
     private lateinit var callback: UiObserver<Screen>
 
-    @Before
-    fun setup(){
+//    @Before
+//    fun setup(){
+//        navigation = FakeMutableNavigation.Base()
+//        callback = object : UiObserver<Screen> {
+//            override fun update(data: Screen) = Unit
+//        }
+//    }
+
+    @Test
+    fun main_scenario(){
         navigation = FakeMutableNavigation.Base()
         callback = object : UiObserver<Screen> {
             override fun update(data: Screen) = Unit
         }
-    }
-
-    @Test
-    fun main_scenario(){
         representative = MainRepresentative.Base(navigation)
         navigation.checkObserver(UiObserver.Empty())
         navigation.checkScreen(Screen.Empty)
