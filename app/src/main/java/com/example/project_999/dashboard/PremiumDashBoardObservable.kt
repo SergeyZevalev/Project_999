@@ -4,7 +4,7 @@ import com.example.project_999.core.UiObservable
 
 interface PremiumDashBoardObservable : UiObservable<PremiumDashboardUiState> {
 
-    class Base : UiObservable.Single<PremiumDashboardUiState>(
+    class Base : UiObservable.Base<PremiumDashboardUiState>(
         PremiumDashboardUiState.Empty
     ), PremiumDashBoardObservable
 }

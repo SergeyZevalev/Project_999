@@ -30,6 +30,13 @@ interface Screen {
         }
     }
 
+    abstract class Pop(private val fragmentClass: Class<out Fragment>) : Screen {
+
+        override fun show(fragmentManager: FragmentManager, containerId: Int) {
+            TODO("Not yet implemented")
+        }
+    }
+
     object Empty : Screen {
         override fun show(fragmentManager: FragmentManager, containerId: Int) = Unit
 

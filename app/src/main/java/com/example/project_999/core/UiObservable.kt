@@ -4,28 +4,26 @@ import androidx.annotation.MainThread
 
 interface UiObservable<T : Any> : UiUpdate<T>, UpdateObserver<T> {
     fun clear()
-    abstract class Single<T : Any>(
+    @MainThread
+    abstract class Base<T : Any>(
         private val empty: T
     ) : UiObservable<T> {
 
-        @Volatile
         private var observer: UiObserver<T> = UiObserver.Empty()
 
-        @Volatile
         protected var cachedData: T = empty
 
         override fun clear() {
             cachedData = empty
         }
 
-        @MainThread
-        override fun updateObserver(uiObserver: UiObserver<T>) = synchronized(Single::class.java) {
+        override fun updateObserver(uiObserver: UiObserver<T>) {
             observer = uiObserver
             observer.update(cachedData)
 
         }
 
-        override fun update(data: T) = synchronized(Single::class.java) {
+        override fun update(data: T) {
             cachedData = data
             observer.update(cachedData)
 
