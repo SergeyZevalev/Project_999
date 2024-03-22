@@ -6,7 +6,6 @@ import com.example.project_999.main.MainRepresentative
 import com.example.project_999.main.Navigation
 import com.example.project_999.main.Screen
 import junit.framework.Assert.assertEquals
-import org.junit.Before
 import org.junit.Test
 
 class MainRepresentativeTest {
@@ -14,14 +13,6 @@ class MainRepresentativeTest {
     private lateinit var representative: MainRepresentative
     private lateinit var navigation: FakeMutableNavigation
     private lateinit var callback: UiObserver<Screen>
-
-//    @Before
-//    fun setup(){
-//        navigation = FakeMutableNavigation.Base()
-//        callback = object : UiObserver<Screen> {
-//            override fun update(data: Screen) = Unit
-//        }
-//    }
 
     @Test
     fun main_scenario(){
