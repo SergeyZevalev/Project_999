@@ -2,7 +2,6 @@ package com.example.project_999
 
 import com.example.project_999.core.Module
 import com.example.project_999.core.UiObserver
-import com.example.project_999.dashboard.Dashboard
 import com.example.project_999.dashboard.DashboardRepresentative
 import com.example.project_999.dashboard.PremiumDashBoardObservable
 import com.example.project_999.dashboard.PremiumDashboardUiState

@@ -13,6 +13,11 @@ interface RunAsync{
         uiBlock: (T) -> Unit
     )
 
+    suspend fun <T: Any> runAsyncInternal(
+        backgroundBlock: suspend () -> T,
+        uiBlock: (T) -> Unit
+    )
+
     fun clear()
 
     class Base(
@@ -28,6 +33,15 @@ interface RunAsync{
             job = scope.launch(dispatchersList.background()) {
                 val result = backgroundBlock.invoke()
                 withContext(dispatchersList.ui()) {
+                    uiBlock.invoke(result)
+                }
+            }
+        }
+
+        override suspend fun <T : Any> runAsyncInternal(backgroundBlock: suspend () -> T, uiBlock: (T) -> Unit) {
+            withContext(dispatchersList.background()) {
+                val result = backgroundBlock.invoke()
+                withContext(dispatchersList.ui()){
                     uiBlock.invoke(result)
                 }
             }

@@ -10,6 +10,7 @@ import com.example.project_999.dashboard.Dashboard
 import com.example.project_999.main.Navigation
 import com.example.project_999.main.Screen
 import com.example.project_999.subscription.domain.SubscriptionInteractor
+import com.example.project_999.subscription.domain.SubscriptionResult
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -21,9 +22,11 @@ interface SubscriptionRepresentative : Representative<SubscriptionUiState>, Save
 
     @MainThread
     fun subscribe()
+    fun subscribeInternal()
     fun finish()
     fun comeback()
     class Base(
+        private val mapper: SubscriptionUiMapper,
         private val runAsync: RunAsync,
         private val handleDeath: HandleDeath,
         private val observable: SubscriptionObservable,
@@ -55,12 +58,17 @@ interface SubscriptionRepresentative : Representative<SubscriptionUiState>, Save
             subscribeInner()
         }
 
+        private val uiBlock: (SubscriptionResult) -> Unit = { result ->
+            result.map(mapper) { canGoBack = it }
+        }
+
+        override fun subscribeInternal() = handleAsyncInternal({
+            interactor.subscribeInternal()
+        }, uiBlock)
+
         override fun subscribeInner() = handleAsync({
             interactor.subscribe()
-        }) {
-            observable.update(SubscriptionUiState.Finish)
-            canGoBack = true
-        }
+        }, uiBlock)
 
 
         override fun finish() {

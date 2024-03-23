@@ -2,5 +2,8 @@ package com.example.project_999.subscription.domain
 
 interface SubscriptionRepository {
 
-    suspend fun subscribe()
+    fun isUserPremium() : Boolean
+    fun subscribe()
+
+    suspend fun subscribeInternal()
 }
