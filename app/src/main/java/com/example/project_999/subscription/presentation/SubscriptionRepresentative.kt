@@ -22,7 +22,7 @@ interface SubscriptionRepresentative : Representative<SubscriptionUiState>, Save
 
     @MainThread
     fun subscribe()
-    fun subscribeInternal()
+    suspend fun subscribeInternal()
     fun finish()
     fun comeback()
     class Base(
@@ -62,7 +62,7 @@ interface SubscriptionRepresentative : Representative<SubscriptionUiState>, Save
             result.map(mapper) { canGoBack = it }
         }
 
-        override fun subscribeInternal() = handleAsyncInternal({
+        override suspend fun subscribeInternal() = handleAsyncInternal({
             interactor.subscribeInternal()
         }, uiBlock)
 
