@@ -5,6 +5,7 @@ import com.example.project_999.core.UiObserver
 import com.example.project_999.dashboard.Dashboard
 
 interface MainRepresentative: Representative<Screen> {
+
     fun showDashboard(firstTime: Boolean)
     fun observed()
     fun saveState()
@@ -12,7 +13,6 @@ interface MainRepresentative: Representative<Screen> {
     class Base(
         private val navigation: Navigation.Mutable
     ) : MainRepresentative {
-
 
         override fun startGettingUpdates(callback: UiObserver<Screen>) =
             navigation.updateObserver(callback)
@@ -25,9 +25,7 @@ interface MainRepresentative: Representative<Screen> {
             }
         }
 
-        override fun observed() {
-            navigation.clear()
-        }
+        override fun observed() = navigation.clear()
 
         override fun saveState() {
             //TODO: save and restore

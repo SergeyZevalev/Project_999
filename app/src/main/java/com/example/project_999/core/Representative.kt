@@ -18,21 +18,16 @@ interface Representative<T : Any> {
         protected fun <T: Any> handleAsync(
             backgroundBlock: suspend () -> T,
             uiBlock: (T) -> Unit
-        ) {
-            runAsync.runAsync(coroutineScope, backgroundBlock, uiBlock)
-        }
+        ) = runAsync.runAsync(coroutineScope, backgroundBlock, uiBlock)
 
         protected suspend fun <T: Any> handleAsyncInternal(
             backgroundBlock: suspend () -> T,
             uiBlock: (T) -> Unit
-        ) {
-            runAsync.runAsyncInternal(backgroundBlock, uiBlock)
-        }
+        ) = runAsync.runAsyncInternal(backgroundBlock, uiBlock)
 
-        protected fun clear(){
+        protected fun clear() =
             runAsync.clear()
-        }
-    }
 
+    }
 }
 

@@ -39,7 +39,6 @@ interface Screen {
 
     object Empty : Screen {
         override fun show(fragmentManager: FragmentManager, containerId: Int) = Unit
-
     }
 
 }

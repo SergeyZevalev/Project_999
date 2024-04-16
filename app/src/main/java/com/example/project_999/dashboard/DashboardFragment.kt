@@ -16,9 +16,12 @@ class DashboardFragment: BaseFragment<DashboardRepresentative>(R.layout.dashboar
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         super.onViewCreated(view, savedInstanceState)
+
         val button = view.findViewById<CustomButton>(R.id.play_button)
         val textView = view.findViewById<CustomTextView>(R.id.show_playing_text_view)
+
         button.setOnClickListener {
             representative.play()
         }

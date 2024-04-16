@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
-    <com.example.project_999.core.CustomProgressBar
+    <com.example.project_999.subscription.progress.presentation.SubscriptionProgressBar
         android:visibility="gone"
         android:layout_gravity="center"
         android:id="@+id/progress_bar"

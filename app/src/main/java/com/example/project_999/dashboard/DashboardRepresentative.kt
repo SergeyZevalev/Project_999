@@ -4,11 +4,12 @@ import com.example.project_999.core.ClearRepresentative
 import com.example.project_999.core.Representative
 import com.example.project_999.core.UiObserver
 import com.example.project_999.main.Navigation
-import com.example.project_999.subscription.presentation.Subscription
+import com.example.project_999.subscription.screen.presentation.Subscription
 
 interface DashboardRepresentative : Representative<PremiumDashboardUiState> {
 
     fun observed() = Unit
+
     fun play()
 
     class Premium(
@@ -16,20 +17,16 @@ interface DashboardRepresentative : Representative<PremiumDashboardUiState> {
     ) : DashboardRepresentative {
 
         override fun observed() = observable.clear()
-        override fun play() {
-            observable.update(PremiumDashboardUiState.Playing)
-        }
 
-        override fun startGettingUpdates(callback: UiObserver<PremiumDashboardUiState>) {
+        override fun play() = observable.update(PremiumDashboardUiState.Playing)
+
+        override fun startGettingUpdates(callback: UiObserver<PremiumDashboardUiState>) =
             observable.updateObserver(callback)
-        }
 
-        override fun stopGettingUpdates() {
-            observable.updateObserver()
-        }
+        override fun stopGettingUpdates() = observable.updateObserver()
 
-        override fun equals(other: Any?)=
-            javaClass.name.equals(other?.javaClass?.name)
+        override fun equals(other: Any?) = javaClass.name.equals(other?.javaClass?.name)
+
     }
 
     class Base(
@@ -41,8 +38,7 @@ interface DashboardRepresentative : Representative<PremiumDashboardUiState> {
             navigation.update(Subscription)
         }
 
-        override fun equals(other: Any?)=
-            javaClass.name.equals(other?.javaClass?.name)
+        override fun equals(other: Any?) =  javaClass.name.equals(other?.javaClass?.name)
 
     }
 }

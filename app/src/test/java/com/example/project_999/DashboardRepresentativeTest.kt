@@ -6,7 +6,7 @@ import com.example.project_999.dashboard.DashboardRepresentative
 import com.example.project_999.dashboard.PremiumDashBoardObservable
 import com.example.project_999.dashboard.PremiumDashboardUiState
 import com.example.project_999.main.UserPremiumCache
-import com.example.project_999.subscription.presentation.Subscription
+import com.example.project_999.subscription.screen.presentation.Subscription
 import junit.framework.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test

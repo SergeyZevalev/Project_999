@@ -10,6 +10,7 @@ interface UserPremiumCache {
     }
 
     interface Read {
+
         fun isUserPremium(): Boolean
     }
 
@@ -19,12 +20,10 @@ interface UserPremiumCache {
         private val sharedPreferences: SharedPreferences,
         private val key: String = "isUserPremium"
     ) : Mutable {
-        override fun saveUserPremium() {
-            sharedPreferences.edit().putBoolean(key, true).apply()
-        }
+
+        override fun saveUserPremium() =  sharedPreferences.edit().putBoolean(key, true).apply()
 
         override fun isUserPremium(): Boolean = sharedPreferences.getBoolean(key, false)
-
 
     }
 }

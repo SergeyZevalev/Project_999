@@ -22,9 +22,8 @@ interface SaveAndRestore {
         private val key: String,
         private val clasz: Class<T>
     ) : Mutable<T> {
-        override fun save(data: T) {
-            bundle!!.putSerializable(key, data)
-        }
+
+        override fun save(data: T) = bundle!!.putSerializable(key, data)
 
         override fun read(): T =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) bundle!!.getSerializable(
@@ -34,7 +33,6 @@ interface SaveAndRestore {
             else bundle!!.getSerializable(key) as T
 
         override fun isEmpty() = bundle == null
-
 
     }
 }

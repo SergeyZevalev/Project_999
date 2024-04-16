@@ -10,6 +10,7 @@ class DashBoardModule(
     private val clear: ClearRepresentative
 ): Module<DashboardRepresentative> {
     override fun representative(): DashboardRepresentative {
+
         val isUserPremium = UserPremiumCache.Base(core.sharedPreferences()).isUserPremium()
 
         return if (isUserPremium) {

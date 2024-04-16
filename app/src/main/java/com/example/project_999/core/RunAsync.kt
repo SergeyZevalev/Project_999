@@ -25,6 +25,7 @@ interface RunAsync{
     ) : RunAsync {
 
         private var job: Job? = null
+
         override fun <T : Any> runAsync(
             scope: CoroutineScope,
             backgroundBlock: suspend () -> T,
@@ -51,6 +52,5 @@ interface RunAsync{
             job?.cancel()
             job = null
         }
-
     }
 }

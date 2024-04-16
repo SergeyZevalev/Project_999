@@ -9,10 +9,8 @@ import com.example.project_999.core.UiObserver
 
 class MainActivity : AppCompatActivity(), ProvideRepresentative {
 
-
     private lateinit var representative: MainRepresentative
     private lateinit var uiObserver: UiObserver<Screen>
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,8 +24,7 @@ class MainActivity : AppCompatActivity(), ProvideRepresentative {
             }
         }
 
-        representative =
-            provideRepresentative(MainRepresentative::class.java)
+        representative =  provideRepresentative(MainRepresentative::class.java)
 
         representative.showDashboard(savedInstanceState == null)
 
@@ -43,7 +40,7 @@ class MainActivity : AppCompatActivity(), ProvideRepresentative {
         representative.stopGettingUpdates()
     }
 
-    override fun <T : Representative<*>> provideRepresentative(clasz: Class<T>) : T =
+    override fun <T : Representative<*>> provideRepresentative(clasz: Class<T>) =
         (application as ProvideRepresentative).provideRepresentative(clasz)
 
 

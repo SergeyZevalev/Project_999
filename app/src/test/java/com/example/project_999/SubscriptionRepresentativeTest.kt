@@ -8,11 +8,11 @@ import com.example.project_999.core.UiObserver
 import com.example.project_999.dashboard.Dashboard
 import com.example.project_999.main.Navigation
 import com.example.project_999.main.Screen
-import com.example.project_999.subscription.domain.SubscriptionInteractor
-import com.example.project_999.subscription.presentation.SubscriptionObservable
-import com.example.project_999.subscription.presentation.SubscriptionRepresentative
-import com.example.project_999.subscription.presentation.SubscriptionUiSaveAndRestoreState
-import com.example.project_999.subscription.presentation.SubscriptionUiState
+import com.example.project_999.subscription.progress.domain.SubscriptionInteractor
+import com.example.project_999.subscription.screen.presentation.SubscriptionObservable
+import com.example.project_999.subscription.screen.presentation.SubscriptionRepresentative
+import com.example.project_999.subscription.screen.presentation.SubscriptionUiSaveAndRestoreState
+import com.example.project_999.subscription.screen.presentation.SubscriptionUiState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.runBlocking
 import org.junit.Test

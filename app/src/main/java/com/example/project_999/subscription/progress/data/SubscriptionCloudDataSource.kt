@@ -1,4 +1,4 @@
-package com.example.project_999.subscription.data
+package com.example.project_999.subscription.progress.data
 
 import kotlinx.coroutines.delay
 
@@ -10,7 +10,5 @@ interface SubscriptionCloudDataSource {
         override suspend fun subscribe() {
             delay(5000)
         }
-
     }
-
 }

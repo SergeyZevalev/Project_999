@@ -1,4 +1,4 @@
-package com.example.project_999.subscription.presentation
+package com.example.project_999.subscription.screen.presentation
 
 import com.example.project_999.core.UiObservable
 
@@ -6,8 +6,8 @@ interface SubscriptionObservable: UiObservable<SubscriptionUiState>, SaveSubscri
 
     class Base: UiObservable.Base<SubscriptionUiState>(SubscriptionUiState.Empty),
         SubscriptionObservable {
-        override fun saveState(saveState: SubscriptionUiSaveAndRestoreState.Save) {
+        override fun saveState(saveState: SubscriptionUiSaveAndRestoreState.Save) =
             saveState.save(cachedData)
-        }
+
     }
 }

@@ -26,7 +26,7 @@ class CustomButton : androidx.appcompat.widget.AppCompatButton, ChangeVisible {
     override fun onSaveInstanceState(): Parcelable? =
         super.onSaveInstanceState()?.let {
             val customButtonState = CustomVisibilityState(it)
-            customButtonState.visible = visibility
+            customButtonState.save(this)
             return customButtonState
 
         }
@@ -35,7 +35,7 @@ class CustomButton : androidx.appcompat.widget.AppCompatButton, ChangeVisible {
         val customButtonState = state as CustomVisibilityState?
         super.onRestoreInstanceState(state?.superState)
         customButtonState?.let {
-            visibility = it.visible
+            it.restore(this)
         }
     }
 
@@ -51,7 +51,15 @@ class CustomButton : androidx.appcompat.widget.AppCompatButton, ChangeVisible {
 
 class CustomVisibilityState : BaseSavedState {
 
-    var visible = View.VISIBLE
+    private var visible = View.VISIBLE
+
+    fun save(view: View) {
+        visible = view.visibility
+    }
+
+    fun restore(view: View) {
+        view.visibility = visible
+    }
 
     constructor(superState: Parcelable) : super(superState)
     private constructor(parcelIn: Parcel) : super(parcelIn) {

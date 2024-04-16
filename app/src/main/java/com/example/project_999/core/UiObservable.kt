@@ -3,7 +3,9 @@ package com.example.project_999.core
 import androidx.annotation.MainThread
 
 interface UiObservable<T : Any> : UiUpdate<T>, UpdateObserver<T> {
+
     fun clear()
+
     @MainThread
     abstract class Base<T : Any>(
         private val empty: T
@@ -28,28 +30,25 @@ interface UiObservable<T : Any> : UiUpdate<T>, UpdateObserver<T> {
             observer.update(cachedData)
 
         }
-
     }
 }
 
-interface UiObserver<T : Any> : UiUpdate<T>{
-
+interface UiObserver<T : Any> : UiUpdate<T> {
 
     class Empty<T : Any>() : UiObserver<T> {
+
         override fun update(data: T) = Unit
 
-        override fun equals(other: Any?): Boolean {
-            return javaClass.name == other?.javaClass?.name
-        }
+        override fun equals(other: Any?) =
+            javaClass.name == other?.javaClass?.name
 
-        override fun hashCode(): Int {
-            return javaClass.hashCode()
-        }
+        override fun hashCode() = javaClass.hashCode()
 
     }
 }
 
 interface UpdateObserver<T : Any> {
+
     fun updateObserver(uiObserver: UiObserver<T> = UiObserver.Empty())
 }
 
