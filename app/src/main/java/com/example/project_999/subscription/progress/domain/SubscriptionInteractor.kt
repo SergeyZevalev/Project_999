@@ -29,21 +29,21 @@ interface SubscriptionInteractor {
 
 interface SubscriptionResult {
 
-    fun map(mapper: Mapper, canGoBackCallback: (Boolean) -> Unit)
+    fun map(mapper: Mapper)
 
     object Success : SubscriptionResult {
 
-        override fun map(mapper: Mapper, canGoBackCallback: (Boolean) -> Unit) =
-            mapper.map(canGoBackCallback)
+        override fun map(mapper: Mapper) =
+            mapper.map()
     }
 
     object NoDataYet : SubscriptionResult {
 
-        override fun map(mapper: Mapper, canGoBackCallback: (Boolean) -> Unit) = Unit
+        override fun map(mapper: Mapper) = Unit
     }
 }
 
 interface Mapper {
 
-    fun map(canGoBackCallback: (Boolean) -> Unit)
+    fun map()
 }

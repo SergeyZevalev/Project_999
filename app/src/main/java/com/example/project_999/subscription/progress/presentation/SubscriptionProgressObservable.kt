@@ -2,7 +2,7 @@ package com.example.project_999.subscription.progress.presentation
 
 import com.example.project_999.core.UiObservable
 
-interface SubscriptionProgressObservable : UiObservable<SubscriptionProgressUiState> {
+interface SubscriptionProgressObservable : UiObservable<SubscriptionProgressUiState>, CanGoBack {
 
     fun save(saveSubscriptionProgressState: SaveAndRestoreSubscriptionProgressState.Save)
 
@@ -12,5 +12,7 @@ interface SubscriptionProgressObservable : UiObservable<SubscriptionProgressUiSt
         override fun save(saveSubscriptionProgressState: SaveAndRestoreSubscriptionProgressState.Save) {
             saveSubscriptionProgressState.save(cachedData)
         }
+
+        override fun canGoBack() = cachedData.canGoBack()
     }
 }

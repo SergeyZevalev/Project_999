@@ -7,14 +7,13 @@ import com.example.project_999.core.UiObserver
 import com.example.project_999.dashboard.Dashboard
 import com.example.project_999.main.Navigation
 import com.example.project_999.subscription.progress.presentation.ComeBack
+import com.example.project_999.subscription.progress.presentation.Subscribe
 
 interface SubscriptionRepresentative : Representative<SubscriptionUiState>, SaveSubscriptionUIState,
-    SubscriptionObserved, ComeBack<Boolean>  {
+    SubscriptionObserved, ComeBack<Boolean>, Subscribe  {
 
     fun initState(initState: SubscriptionUiSaveAndRestoreState.Read)
     fun finish()
-    @MainThread
-    fun subscribe()
 
     class Base(
         private val handleDeath: HandleDeath,

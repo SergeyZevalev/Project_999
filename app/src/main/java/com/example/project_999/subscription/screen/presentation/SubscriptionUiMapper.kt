@@ -9,9 +9,8 @@ class SubscriptionUiMapper(
     private val progressObservable: UiUpdate<SubscriptionProgressUiState>
 ): Mapper {
 
-    override fun map(canGoBackCallback: (Boolean) -> Unit) {
+    override fun map() {
         observable.update(SubscriptionUiState.Finish)
         progressObservable.update(SubscriptionProgressUiState.Hide)
-        canGoBackCallback.invoke(true)
     }
 }

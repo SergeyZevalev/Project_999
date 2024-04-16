@@ -43,19 +43,16 @@ class SubscriptionProgressBar : ProgressBar, SubscriptionProgressActions {
     override fun onSaveInstanceState(): Parcelable? =
         super.onSaveInstanceState()?.let {
             val state = SubscriptionProgressSaveState(it)
-            representative.save(state)
             state.save(this)
+            representative.save(state)
             return state
         }
 
     override fun onRestoreInstanceState(state: Parcelable?) {
-        val restoredState = state as SubscriptionProgressSaveState?
-        representative.restore(restoredState!!)
-        super.onRestoreInstanceState(state?.superState)
-        restoredState.let {
-            it.restore(this)
-        }
-
+        val restoredState = state as SubscriptionProgressSaveState
+        super.onRestoreInstanceState(state.superState)
+        restoredState.restore(this)
+        representative.restore(restoredState)
     }
 
     override fun init(firstRun: Boolean) = representative.init(firstRun)

@@ -26,10 +26,8 @@ interface SubscriptionProgressRepresentative : Representative<SubscriptionProgre
     ) : Representative.Abstract<SubscriptionProgressUiState>(runAsync),
         SubscriptionProgressRepresentative {
 
-        private var canGoBack = true
-
-        private val uiBlock: (SubscriptionResult) -> Unit = { result ->
-            result.map(mapper) { canGoBack = it }
+        private val uiBlock: (SubscriptionResult) -> Unit = {
+            it.map(mapper)
         }
 
         override suspend fun subscribeInternal() = handleAsyncInternal({
@@ -47,14 +45,9 @@ interface SubscriptionProgressRepresentative : Representative<SubscriptionProgre
         override fun save(saveSubscriptionProgressState: SaveAndRestoreSubscriptionProgressState.Save) =
             observable.save(saveSubscriptionProgressState)
 
-        override fun subscribeInner() {
-            canGoBack = false
-            handleAsync({
-                interactor.subscribe()
-            }, uiBlock)
-        }
+        override fun subscribeInner() = handleAsync( {interactor.subscribe()} , uiBlock)
 
-        override fun comeback(data: ComeBack<Boolean>) = data.comeback(canGoBack)
+        override fun comeback(data: ComeBack<Boolean>) = data.comeback(observable.canGoBack())
         override fun init(firstRun: Boolean) {
             if (firstRun) {
                 handleDeath.firstOpening()

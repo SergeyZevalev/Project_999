@@ -5,8 +5,9 @@ import com.example.project_999.core.UiUpdate
 import com.example.project_999.subscription.screen.presentation.SubscriptionInner
 import java.io.Serializable
 
-interface SubscriptionProgressUiState : Serializable {
+interface SubscriptionProgressUiState : Serializable, CanGoBack {
 
+    override fun canGoBack() = true
     fun show(hideAndShow: ChangeVisible)
     fun restoreAfterDeath(
         subscribeInner: SubscriptionInner,
@@ -22,6 +23,8 @@ interface SubscriptionProgressUiState : Serializable {
             subscribeInner: SubscriptionInner,
             observable: UiUpdate<SubscriptionProgressUiState>
         ) = subscribeInner.subscribeInner()
+
+        override fun canGoBack() = false
 
     }
 
@@ -46,4 +49,9 @@ interface SubscriptionProgressUiState : Serializable {
             observable: UiUpdate<SubscriptionProgressUiState>
         ) = Unit
     }
+}
+
+interface CanGoBack {
+
+    fun canGoBack() : Boolean
 }
